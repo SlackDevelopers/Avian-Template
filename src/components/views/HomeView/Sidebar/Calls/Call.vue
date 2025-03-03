@@ -42,7 +42,7 @@ const handleOpenInfoModal = () => {
         props.active
           ? ['border border-dashed border-green-100 dark:border-green-800']
           : [
-              'focus:bg-indigo-50 dark:active:bg-gray-600 dark:focus:bg-gray-600 dark:hover:bg-gray-600 hover:bg-indigo-50 active:bg-indigo-100',
+              'focus:bg-rose-50 dark:active:bg-gray-600 dark:focus:bg-gray-600 dark:hover:bg-gray-600 hover:bg-rose-50 active:bg-rose-100',
             ]
       "
       tabindex="0"
@@ -124,7 +124,7 @@ const handleOpenInfoModal = () => {
           <!--recording length-->
           <p
             v-if="props.active"
-            class="body-2 flex justify-start items-center text-indigo-300"
+            class="body-2 flex justify-start items-center text-rose-300"
           >
             {{ props.call.length }}
           </p>

@@ -15,7 +15,7 @@ const props = defineProps<{
 
 <template>
   <button
-    class="w-full p-5 flex hover:bg-indigo-50 active:bg-indigo-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600 outline-none transition-all duration-300"
+    class="w-full p-5 flex hover:bg-rose-50 active:bg-rose-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600 outline-none transition-all duration-300"
   >
     <!--icon-->
     <div

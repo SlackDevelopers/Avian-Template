@@ -19,8 +19,8 @@ const colorClasses = computed(() => {
     return "text-red-400 group-hover:text-red-500";
   } else {
     return `text-black dark:text-white opacity-50 dark:opacity-70
-        group-hover:text-indigo-500 group-active:text-indigo-600 
-        dark:group-hover:text-indigo-300 dark:group-active:text-indigo-400`;
+        group-hover:text-rose-500 group-active:text-rose-600 
+        dark:group-hover:text-rose-300 dark:group-active:text-rose-400`;
   }
 });
 </script>

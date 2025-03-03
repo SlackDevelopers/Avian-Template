@@ -27,9 +27,9 @@ const store = useStore();
       "
       class="w-full p-5 flex transition duration-200 ease-out outline-none"
       :class="{
-        'hover:bg-indigo-50 active:bg-indigo-100 focus:bg-indigo-50 dark:hover:bg-gray-600 dark:focus:bg-gray-600':
+        'hover:bg-rose-50 active:bg-rose-100 focus:bg-rose-50 dark:hover:bg-gray-600 dark:focus:bg-gray-600':
           props.variant !== 'card',
-        'bg-indigo-50 dark:bg-gray-600': props.active,
+        'bg-rose-50 dark:bg-gray-600': props.active,
       }"
     >
       <!--profile image-->

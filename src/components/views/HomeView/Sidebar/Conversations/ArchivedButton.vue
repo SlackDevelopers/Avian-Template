@@ -27,12 +27,12 @@ const store = useStore();
               'dark:active:bg-red-300',
             ]
           : [
-              'focus:bg-indigo-50',
+              'focus:bg-rose-50',
               'dark:active:bg-gray-600',
               'dark:focus:bg-gray-600',
               'dark:hover:bg-gray-600',
-              ' hover:bg-indigo-50',
-              'active:bg-indigo-100',
+              ' hover:bg-rose-50',
+              'active:bg-rose-100',
             ]
       "
       tabindex="0"

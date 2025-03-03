@@ -10,7 +10,7 @@ const props = defineProps<{
     class="p-4 flex-auto rounded-sm outline-none focus:outline-none transition-all duration-200"
     :class="
       props.active
-        ? ['bg-indigo-300', 'text-white']
+        ? ['bg-rose-300', 'text-white']
         : ['text-black', 'opacity-60', 'dark:text-white', 'dark:opacity-70']
     "
   >

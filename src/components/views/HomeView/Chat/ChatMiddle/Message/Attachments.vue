@@ -208,11 +208,11 @@ const isNumber = (
               class="w-8 h-8 mr-4 flex justify-center rounded-full outline-none items-center duration-200"
               :class="
                 props.self
-                  ? ['bg-indigo-300']
+                  ? ['bg-rose-300']
                   : [
-                      'bg-indigo-50',
-                      'hover:bg-indigo-100',
-                      'active:bg-indigo-200',
+                      'bg-rose-50',
+                      'hover:bg-rose-100',
+                      'active:bg-rose-200',
                       'dark:bg-gray-400',
                       'dark:hover:bg-gray-300',
                       'dark:focus:bg-gray-300',

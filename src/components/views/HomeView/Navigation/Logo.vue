@@ -21,7 +21,7 @@ const store = useStore();
         'right-[625rem]': !SkipLinkFocused,
       }"
     >
-      <ForwardIcon class="w-7 h-6 text-indigo-300" />
+      <ForwardIcon class="w-7 h-6 text-rose-300" />
     </a>
 
     <button

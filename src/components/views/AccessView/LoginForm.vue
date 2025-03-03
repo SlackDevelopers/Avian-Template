@@ -86,7 +86,7 @@ const password = ref("");
             Don’t have an account?
             <RouterLink
               to="/access/sign-up/"
-              class="text-indigo-400 opacity-100"
+              class="text-rose-400 opacity-100"
             >
               Sign up
             </RouterLink>
