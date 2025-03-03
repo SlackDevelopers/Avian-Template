@@ -4,3 +4,11 @@ package-lock.json
 .vscode
 dist/
 package.json
+src/assets/.DS_Store
+yarn.lock
+yarn.lock
+logo-gradient.svg
+.gitignore
+logo-white.svg
+logo.svg
+yarn.lock
