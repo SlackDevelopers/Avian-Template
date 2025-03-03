@@ -6,7 +6,7 @@ import Chat from "@src/components/views/HomeView/Chat/Chat.vue";
 
 const routes = [
   {
-    path: "/chat/",
+    path: "/",
     name: "Home",
     alias: "/",
     component: HomeView,
