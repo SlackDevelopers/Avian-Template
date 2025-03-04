@@ -1,0 +1,17 @@
+# InlineResponse20014InstanceRecordExtraInformationOs
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**type** | **string** |  | [optional] 
+**platform** | **string** |  | [optional] 
+**arch** | **string** |  | [optional] 
+**release** | **string** |  | [optional] 
+**uptime** | **float** |  | [optional] 
+**loadavg** | **float[]** |  | [optional] 
+**totalmem** | **int** |  | [optional] 
+**freemem** | **int** |  | [optional] 
+**cpus** | **int** |  | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

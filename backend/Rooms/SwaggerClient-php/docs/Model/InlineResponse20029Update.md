@@ -1,0 +1,23 @@
+# InlineResponse20029Update
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**_id** | **string** |  | [optional] 
+**ts** | **string** |  | [optional] 
+**t** | **string** |  | [optional] 
+**name** | **string** |  | [optional] 
+**usernames** | **string[]** |  | [optional] 
+**msgs** | **int** |  | [optional] 
+**users_count** | **int** |  | [optional] 
+**_updated_at** | **string** |  | [optional] 
+**u** | [**\Swagger\Client\Model\InlineResponse20030MessageU**](InlineResponse20030MessageU.md) |  | [optional] 
+**default** | **bool** |  | [optional] 
+**last_message** | [**\Swagger\Client\Model\InlineResponse20029LastMessage**](InlineResponse20029LastMessage.md) |  | [optional] 
+**lm** | **string** |  | [optional] 
+**uids** | **string[]** |  | [optional] 
+**ro** | **bool** |  | [optional] 
+**sys_mes** | **bool** |  | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

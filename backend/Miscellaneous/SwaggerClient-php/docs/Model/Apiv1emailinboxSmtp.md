@@ -1,0 +1,13 @@
+# Apiv1emailinboxSmtp
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**password** | **string** |  | [optional] 
+**port** | **int** |  | [optional] 
+**secure** | **bool** |  | [optional] 
+**server** | **string** |  | [optional] 
+**username** | **string** |  | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

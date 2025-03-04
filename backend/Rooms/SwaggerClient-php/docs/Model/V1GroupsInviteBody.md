@@ -1,0 +1,10 @@
+# V1GroupsInviteBody
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**room_id** | **string** | The group ID. You can find the IDs by using any of the following endpoints: * &lt;a href&#x3D;&#x27;https://developer.rocket.chat/apidocs/get-list-of-user-groups&#x27; target&#x3D;&#x27;_blank&#x27;&gt;Get List of User Groups&lt;/a&gt;: This endpoint returns all private channels in the workspace, if you have the required permissions to view them. * &lt;a href&#x3D;&#x27;https://developer.rocket.chat/apidocs/get-groups&#x27; target&#x3D;&#x27;_blank&#x27;&gt;Get Groups&lt;/a&gt;: This endpoint returns the private channels that you are a member of. | 
+**user_id** | **string** | The ID of the user to be invited. You can also use the parameter &#x60;userIds&#x60; as an array to invite more than one user. For example, &#x60;[\&quot;nSYqWzZ4GsKTX4dyK\&quot;, \&quot;SYqWzZ4Gsasdfgh\&quot;]&#x60; | 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

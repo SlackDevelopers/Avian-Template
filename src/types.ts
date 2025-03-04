@@ -109,3 +109,11 @@ export interface IEmoji {
   r?: string;
   v?: string[];
 }
+
+export interface ILoginResponse {
+  status: string;
+  userId: string;
+  authToken: string;
+  error?: string;
+  details?:string;
+}

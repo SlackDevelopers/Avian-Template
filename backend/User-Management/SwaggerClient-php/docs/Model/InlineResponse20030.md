@@ -1,0 +1,10 @@
+# InlineResponse20030
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**teams** | [**\Swagger\Client\Model\InlineResponse20030Teams[]**](InlineResponse20030Teams.md) |  | [optional] 
+**success** | **bool** |  | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+
