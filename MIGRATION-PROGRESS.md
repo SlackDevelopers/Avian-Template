@@ -119,12 +119,27 @@ Este documento registra el progreso actual en la migración del sistema de estil
   - Implementadas variables para campos de contraseña
   - Mejorada la estructura general del formulario
 
+## Fase 6: Componentes de Estados ✅
+
+- ✅ Migrados componentes de estados vacíos (empty-states)
+  - Implementado sistema unificado de estilos para componentes NoArchive, NoContacts, etc.
+  - Migradas clases de iconos y círculos decorativos
+  - Adaptado sistema para soportar layouts horizontal y vertical
+  - Mejorada la consistencia visual entre diferentes estados
+
+- ✅ Migrados componentes de carga (loading-states)
+  - Implementadas variables CSS para animaciones de carga
+  - Migrados componentes Circle2Lines, MultipleLines y Spinner
+  - Creadas clases semánticas para elementos de carga
+  - Adaptadas animaciones para usar variables CSS
+
 ## Próximos pasos:
 
-1. **Estados y loaders**
-   - Migración de componentes de estados vacíos (empty-states)
-   - Adaptación de componentes de carga (loading-states)
-   - Implementación de variables para animaciones de carga
+1. **Revisión final y optimización**
+   - Auditoría de componentes pendientes
+   - Limpieza de clases Tailwind residuales
+   - Validación cruzada de temas claro/oscuro
+   - Documentación de sistema de diseño
 
 ## Observaciones:
 
@@ -136,4 +151,4 @@ Este documento registra el progreso actual en la migración del sistema de estil
 
 ---
 
-Última actualización: 28 de abril de 2025 (Completada Fase 5)
+Última actualización: 28 de abril de 2025 (Completada Fase 6)

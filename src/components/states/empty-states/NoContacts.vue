@@ -7,30 +7,81 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div
-    class="w-full p-5 flex"
-    :class="
-      props.vertical
-        ? ['flex-col', 'justify-center', 'items-center']
-        : ['flex-row']
-    "
-  >
+  <div :class="['empty-state', props.vertical ? 'empty-state-vertical' : '']">
     <!--icon-->
-    <div :class="props.vertical ? ['mb-3'] : []">
-      <div
-        class="w-7 h-7 mr-4 flex justify-center items-center rounded-full bg-gray-50 dark:bg-gray-700 transition duration-500"
-      >
-        <UserGroupIcon
-          class="w-5 h-5 text-gray-500 dark:text-white dark:opacity-70"
-        />
+    <div :class="props.vertical ? 'empty-state-icon-vertical' : 'empty-state-icon-container'">
+      <div class="empty-state-icon-circle">
+        <UserGroupIcon class="empty-state-icon" />
       </div>
     </div>
 
     <!--content-->
-    <div :class="props.vertical ? [] : ['flex', 'flex-col', 'items-start']">
-      <p class="heading-2 text-color mb-3">No contacts</p>
-
-      <p class="body-2 text-color flex">click the plus icon to add one.</p>
+    <div :class="['empty-state-content', props.vertical ? '' : 'empty-state-content-horizontal']">
+      <p class="empty-state-title">No contacts</p>
+      <p class="empty-state-description">click the plus icon to add one.</p>
     </div>
   </div>
 </template>
+
+<style scoped>
+.empty-state {
+  width: 100%;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: row;
+}
+
+.empty-state-vertical {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-state-icon-container {
+  display: flex;
+}
+
+.empty-state-icon-vertical {
+  margin-bottom: var(--space-sm);
+  display: flex;
+}
+
+.empty-state-icon-circle {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--background-subtle);
+  transition: background-color 0.5s;
+}
+
+.empty-state-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state-content-horizontal {
+  align-items: flex-start;
+}
+
+.empty-state-title {
+  font-size: var(--text-heading-md);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-state-description {
+  font-size: var(--text-body-md);
+  color: var(--text-secondary);
+  display: flex;
+}
+</style>

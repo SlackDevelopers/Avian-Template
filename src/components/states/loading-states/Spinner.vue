@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="xs:absolute xs:z-10 md:static flex justify-center items-center w-full h-full"
-  >
+  <div class="spinner-container">
     <div role="status">
       <svg
         aria-hidden="true"
-        class="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-indigo-300"
+        class="spinner-svg"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -23,3 +21,50 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .spinner-container {
+    position: absolute;
+    z-index: 10;
+  }
+}
+
+.spinner-svg {
+  margin-right: var(--space-xs);
+  width: 2rem;
+  height: 2rem;
+  color: var(--skeleton-background);
+  fill: var(--accent-primary-light);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+</style>

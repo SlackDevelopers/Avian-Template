@@ -3,23 +3,61 @@ import { BellSlashIcon } from "@heroicons/vue/24/outline";
 </script>
 
 <template>
-  <div class="w-full p-5 flex">
+  <div class="empty-state">
     <!--icon-->
-    <div>
-      <div
-        class="w-7 h-7 mr-4 flex justify-center items-center rounded-full bg-gray-50 dark:bg-gray-700 transition duration-500"
-      >
-        <BellSlashIcon
-          class="w-5 h-5 text-gray-500 dark:text-white dark:opacity-70"
-        />
+    <div class="empty-state-icon-container">
+      <div class="empty-state-icon-circle">
+        <BellSlashIcon class="empty-state-icon" />
       </div>
     </div>
 
     <!--content-->
-    <div>
-      <p class="heading-2 text-color mb-3">No notifications</p>
-
-      <p class="body-2 text-color flex">Your notifications will appear here.</p>
+    <div class="empty-state-content">
+      <p class="empty-state-title">No notifications</p>
+      <p class="empty-state-description">Your notifications will appear here.</p>
     </div>
   </div>
 </template>
+
+<style scoped>
+.empty-state {
+  width: 100%;
+  padding: var(--space-lg);
+  display: flex;
+}
+
+.empty-state-icon-circle {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--background-subtle);
+  transition: background-color 0.5s;
+}
+
+.empty-state-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state-title {
+  font-size: var(--text-heading-md);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-state-description {
+  font-size: var(--text-body-md);
+  color: var(--text-secondary);
+  display: flex;
+}
+</style>
