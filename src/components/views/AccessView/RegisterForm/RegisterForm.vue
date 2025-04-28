@@ -34,18 +34,17 @@ const changeActiveSection = (event: {
 </script>
 
 <template>
-  <div
-    class="p-5 md:basis-1/2 xs:basis-full flex flex-col justify-center items-center"
-  >
-    <div class="w-full md:px-[26%] xs:px-[10%]">
+  <div class="register-form">
+    <div class="register-form-container">
       <!--header-->
-      <div class="mb-6 flex flex-col">
+      <div class="register-header">
         <img
           src="@src/assets/vectors/logo-gradient.svg"
-          class="w-[1.375rem] h-[1.125rem] mb-5 opacity-70"
+          class="register-logo"
+          alt="bird logo"
         />
-        <p class="heading-2 text-color mb-4">Get started with Avian</p>
-        <p class="body-3 text-color text-opacity-75 font-light">
+        <p class="register-title">Get started with Avian</p>
+        <p class="register-subtitle">
           Sign in to start using messaging!
         </p>
       </div>
@@ -59,10 +58,10 @@ const changeActiveSection = (event: {
       </SlideTransition>
 
       <!--bottom text-->
-      <div class="flex justify-center">
-        <p class="body-2 text-color">
+      <div class="register-footer">
+        <p class="footer-text">
           Already have an account?
-          <RouterLink to="/access/sign-in/" class="text-indigo-400 opacity-100">
+          <RouterLink to="/access/sign-in/" class="footer-link">
             Sign in
           </RouterLink>
         </p>
@@ -70,3 +69,72 @@ const changeActiveSection = (event: {
     </div>
   </div>
 </template>
+
+<style scoped>
+.register-form {
+  padding: var(--space-lg);
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .register-form {
+    flex-basis: 50%;
+  }
+}
+
+.register-form-container {
+  width: 100%;
+  padding: 0 10%;
+}
+
+@media (min-width: 768px) {
+  .register-form-container {
+    padding: 0 26%;
+  }
+}
+
+.register-header {
+  margin-bottom: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+}
+
+.register-logo {
+  width: 1.375rem;
+  height: 1.125rem;
+  margin-bottom: var(--space-lg);
+  opacity: 0.7;
+}
+
+.register-title {
+  font-size: var(--text-heading-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.register-subtitle {
+  font-size: var(--text-body-sm);
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.register-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-text {
+  font-size: var(--text-body-md);
+  color: var(--text-primary);
+}
+
+.footer-link {
+  color: var(--accent-primary);
+  opacity: 1;
+}
+</style>

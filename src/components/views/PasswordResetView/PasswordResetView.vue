@@ -3,9 +3,21 @@ import ResetForm from "@src/components/views/PasswordResetView/PasswordResetForm
 </script>
 
 <template>
-  <div>
-    <div class="w-full h-screen flex">
+  <div class="reset-view">
+    <div class="reset-container">
       <ResetForm />
     </div>
   </div>
 </template>
+
+<style scoped>
+.reset-view {
+  width: 100%;
+}
+
+.reset-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+</style>

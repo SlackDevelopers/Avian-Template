@@ -10,29 +10,27 @@ const password = ref("");
 </script>
 
 <template>
-  <div
-    class="p-5 md:basis-1/2 xs:basis-full flex flex-col justify-center items-center"
-  >
-    <div class="w-full md:px-[26%] xs:px-[10%]">
+  <div class="login-form">
+    <div class="login-form-container">
       <!--header-->
-      <div class="mb-6 flex flex-col">
+      <div class="login-header">
         <img
           src="@src/assets/vectors/logo-gradient.svg"
-          class="w-[1.375rem] h-[1.125rem] mb-4 opacity-70"
+          class="login-logo"
           alt="bird logo"
         />
-        <p class="heading-2 text-color mb-4">Welcome back</p>
-        <p class="body-3 text-color text-opacity-75 font-light">
+        <p class="login-title">Welcome back</p>
+        <p class="login-subtitle">
           Create an account a start messaging now!
         </p>
       </div>
 
       <!--form-->
-      <div class="mb-6">
+      <div class="login-form-fields">
         <LabeledTextInput
           label="Email"
           placeholder="Enter your email"
-          class="mb-5"
+          class="login-input"
         />
         <PasswordInput
           @value-changed="
@@ -47,9 +45,9 @@ const password = ref("");
       </div>
 
       <!--local controls-->
-      <div class="mb-6">
+      <div class="login-actions">
         <Button
-          class="contained-primary contained-text w-full mb-4"
+          class="contained-primary contained-text login-button"
           link
           to="/chat/no-chat/"
           >Sign in</Button
@@ -57,23 +55,19 @@ const password = ref("");
       </div>
 
       <!--divider-->
-      <div class="mb-6 flex items-center">
-        <span
-          class="w-full border border-dashed border-gray-100 dark:border-gray-600 rounded-[.0625rem]"
-        ></span>
-        <p class="body-3 text-color px-4 text-opacity-75 font-light">or</p>
-        <span
-          class="w-full border border-dashed border-gray-100 dark:border-gray-600 rounded-[.0625rem]"
-        ></span>
+      <div class="login-divider">
+        <span class="divider-line"></span>
+        <p class="divider-text">or</p>
+        <span class="divider-line"></span>
       </div>
 
       <!--oauth controls-->
-      <div>
-        <Button class="outlined-primary outlined-text w-full mb-5">
-          <span class="flex">
+      <div class="login-oauth">
+        <Button class="outlined-primary outlined-text login-button">
+          <span class="oauth-button-content">
             <img
               src="@src/assets/vectors/google-logo.svg"
-              class="mr-3"
+              class="oauth-logo"
               alt="google logo"
             />
             Sign in with google
@@ -81,12 +75,12 @@ const password = ref("");
         </Button>
 
         <!--bottom text-->
-        <div class="flex justify-center">
-          <p class="body-2 text-color">
-            Don’t have an account?
+        <div class="login-footer">
+          <p class="footer-text">
+            Don't have an account?
             <RouterLink
               to="/access/sign-up/"
-              class="text-indigo-400 opacity-100"
+              class="footer-link"
             >
               Sign up
             </RouterLink>
@@ -96,3 +90,117 @@ const password = ref("");
     </div>
   </div>
 </template>
+
+<style scoped>
+.login-form {
+  padding: var(--space-lg);
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .login-form {
+    flex-basis: 50%;
+  }
+}
+
+.login-form-container {
+  width: 100%;
+  padding: 0 10%;
+}
+
+@media (min-width: 768px) {
+  .login-form-container {
+    padding: 0 26%;
+  }
+}
+
+.login-header {
+  margin-bottom: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+}
+
+.login-logo {
+  width: 1.375rem;
+  height: 1.125rem;
+  margin-bottom: var(--space-md);
+  opacity: 0.7;
+}
+
+.login-title {
+  font-size: var(--text-heading-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.login-subtitle {
+  font-size: var(--text-body-sm);
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.login-form-fields {
+  margin-bottom: var(--space-xl);
+}
+
+.login-input {
+  margin-bottom: var(--space-lg);
+}
+
+.login-actions {
+  margin-bottom: var(--space-xl);
+}
+
+.login-button {
+  width: 100%;
+  margin-bottom: var(--space-md);
+}
+
+.login-divider {
+  margin-bottom: var(--space-xl);
+  display: flex;
+  align-items: center;
+}
+
+.divider-line {
+  width: 100%;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 0.0625rem;
+}
+
+.divider-text {
+  font-size: var(--text-body-sm);
+  color: var(--text-secondary);
+  padding: 0 var(--space-md);
+  font-weight: 300;
+}
+
+.oauth-button-content {
+  display: flex;
+  align-items: center;
+}
+
+.oauth-logo {
+  margin-right: var(--space-sm);
+}
+
+.login-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-text {
+  font-size: var(--text-body-md);
+  color: var(--text-primary);
+}
+
+.footer-link {
+  color: var(--accent-primary);
+  opacity: 1;
+}
+</style>

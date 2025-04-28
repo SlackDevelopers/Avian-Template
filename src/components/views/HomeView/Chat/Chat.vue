@@ -99,7 +99,7 @@ const handleCloseSelect = () => {
 
   <div
     v-else-if="getActiveConversationId() && activeConversation"
-    class="h-full flex flex-col scrollbar-hidden"
+    class="chat-container"
   >
     <ChatTop
       :select-all="selectAll"
@@ -118,3 +118,17 @@ const handleCloseSelect = () => {
 
   <NoChatSelected v-else />
 </template>
+
+<style scoped>
+.chat-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.chat-container::-webkit-scrollbar {
+  display: none;
+}
+</style>

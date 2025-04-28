@@ -53,9 +53,9 @@ const handleCloseVoiceCallModal = (endCall: boolean) => {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="chat-top">
     <!--Top section-->
-    <div class="w-full min-h-[5.25rem] px-5 py-6">
+    <div class="chat-top-header">
       <SelectSection
         v-if="props.selectMode"
         :select-mode="props.selectMode"
@@ -73,12 +73,8 @@ const handleCloseVoiceCallModal = (endCall: boolean) => {
 
     <!--Pinned Message-->
     <div
-      class="relative transition-[padding] duration-200"
-      :class="{
-        'pb-[3.75rem]':
-          activeConversation.pinnedMessage &&
-          !activeConversation.pinnedMessageHidden,
-      }"
+      class="pinned-message-container"
+      :class="{'has-pinned-message': activeConversation.pinnedMessage && !activeConversation.pinnedMessageHidden}"
     >
       <PinnedMessage :active-conversation="activeConversation" />
     </div>
@@ -104,3 +100,24 @@ const handleCloseVoiceCallModal = (endCall: boolean) => {
     />
   </div>
 </template>
+
+<style scoped>
+.chat-top {
+  width: 100%;
+}
+
+.chat-top-header {
+  width: 100%;
+  min-height: var(--h-pane-header);
+  padding: 1.5rem var(--compose-box-left-right-padding);
+}
+
+.pinned-message-container {
+  position: relative;
+  transition: padding var(--t-normal);
+}
+
+.has-pinned-message {
+  padding-bottom: 3.75rem;
+}
+</style>

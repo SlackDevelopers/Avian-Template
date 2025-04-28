@@ -83,41 +83,33 @@ const replyMessage = getMessageById(activeConversation, props.message.replyTo);
 </script>
 
 <template>
-  <div class="select-none">
-    <div class="xs:mb-6 md:mb-5 flex" :class="{ 'justify-end': props.self }">
+  <div class="message-wrapper">
+    <div class="message-container" :class="{ 'message-self': props.self }">
       <!--avatar-->
-      <div class="mr-4" :class="{ 'ml-[2.25rem]': props.followUp && !divider }">
+      <div class="avatar-container" :class="{ 'avatar-followup': props.followUp && !divider }">
         <div
           v-if="!hideAvatar()"
           :aria-label="getFullName(props.message.sender)"
-          class="outline-none"
+          class="avatar-wrapper"
         >
           <div
             :style="{ backgroundImage: `url(${props.message.sender.avatar})` }"
-            class="w-[2.25rem] h-[2.25rem] bg-cover bg-center rounded-full"
+            class="avatar-image"
           ></div>
         </div>
       </div>
 
-      <div class="flex items-end">
+      <div class="message-content">
         <!--bubble-->
         <div
           @click="handleCloseContextMenu"
           v-click-outside="contextConfig"
           @contextmenu.prevent="handleShowContextMenu"
-          class="group max-w-[31.25rem] p-5 rounded-b transition duration-500"
+          class="message-bubble"
           :class="{
-            'rounded-tl ml-4 order-2 bg-indigo-50 dark:bg-gray-600':
-              props.self && !props.selected,
-
-            'rounded-tr mr-4 bg-gray-50 dark:bg-gray-600':
-              !props.self && !props.selected,
-
-            'rounded-tl ml-4 order-2 bg-indigo-200 dark:bg-indigo-500':
-              props.self && props.selected,
-
-            'rounded-tr mr-4 bg-indigo-200 dark:bg-indigo-500':
-              !props.self && props.selected,
+            'message-bubble-self': props.self,
+            'message-bubble-other': !props.self,
+            'message-bubble-selected': props.selected
           }"
         >
           <!--reply to-->
@@ -125,18 +117,16 @@ const replyMessage = getMessageById(activeConversation, props.message.replyTo);
             v-if="replyMessage"
             :message="replyMessage"
             :self="props.self"
-            class="mb-5 px-3"
+            class="message-reply"
           />
 
           <!--content-->
           <p
             v-if="props.message.content && props.message.type !== 'recording'"
-            class="body-2 outline-none text-black opacity-60 dark:text-white dark:opacity-70"
+            class="message-text"
             v-html="
               linkifyStr(props.message.content as string, {
-                className: props.self
-                  ? 'text-black opacity-50'
-                  : 'text-indigo-500 dark:text-indigo-300',
+                className: props.self ? 'message-link-self' : 'message-link-other',
                 format: {
                   url: (value) =>
                     value.length > 50 ? value.slice(0, 50) + `…` : value,
@@ -170,13 +160,13 @@ const replyMessage = getMessageById(activeConversation, props.message.replyTo);
             v-if="props.message.previewData && !props.message.attachments"
             :self="props.self"
             :preview-data="props.message.previewData as IPreviewData"
-            class="mt-5"
+            class="message-link-preview"
           />
         </div>
 
         <!--date-->
-        <div :class="props.self ? ['ml-4', 'order-1'] : ['mr-4']">
-          <p class="body-1 text-color whitespace-pre">
+        <div class="message-date" :class="{'message-date-self': props.self}">
+          <p class="message-timestamp">
             {{ props.message.date }}
           </p>
         </div>
@@ -197,3 +187,119 @@ const replyMessage = getMessageById(activeConversation, props.message.replyTo);
     />
   </div>
 </template>
+
+<style scoped>
+.message-wrapper {
+  user-select: none;
+}
+
+.message-container {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.message-self {
+  justify-content: flex-end;
+}
+
+@media (min-width: 60.5rem) {
+  .message-container {
+    margin-bottom: 1.25rem;
+  }
+}
+
+.avatar-container {
+  margin-right: 1rem;
+}
+
+.avatar-followup {
+  margin-left: 2.25rem;
+}
+
+.avatar-wrapper {
+  outline: none;
+}
+
+.avatar-image {
+  width: 2.25rem;
+  height: 2.25rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.message-content {
+  display: flex;
+  align-items: flex-end;
+}
+
+.message-bubble {
+  max-width: 31.25rem;
+  padding: 1.25rem;
+  border-radius: 0 0 var(--radius-bubble) var(--radius-bubble);
+  transition: all var(--t-normal);
+}
+
+.message-bubble-self {
+  border-top-left-radius: var(--radius-bubble);
+  margin-left: 1rem;
+  order: 2;
+  background-color: var(--outgoing-background);
+}
+
+.message-bubble-other {
+  border-top-right-radius: var(--radius-bubble);
+  margin-right: 1rem;
+  background-color: var(--incoming-background);
+}
+
+.message-bubble-selected {
+  background-color: var(--focus-lighter);
+}
+
+.message-reply {
+  margin-bottom: 1.25rem;
+  padding: 0 0.75rem;
+}
+
+.message-text {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1rem;
+  letter-spacing: 0.01rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.message-link-self {
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.message-link-other {
+  color: var(--focus);
+}
+
+.message-link-preview {
+  margin-top: 1.25rem;
+}
+
+.message-date {
+  margin-right: 1rem;
+}
+
+.message-date-self {
+  margin-left: 1rem;
+  margin-right: 0;
+  order: 1;
+}
+
+.message-timestamp {
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1rem;
+  letter-spacing: 0.01rem;
+  color: var(--text-primary);
+  white-space: pre;
+}
+</style>

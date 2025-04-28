@@ -57,12 +57,13 @@ onMounted(() => {
 <template>
   <div
     ref="container"
-    class="grow px-5 py-5 flex flex-col overflow-y-scroll scrollbar-hidden"
+    class="chat-messages-container"
   >
     <div
       v-if="store.status !== 'loading'"
       v-for="(message, index) in activeConversation.messages"
       :key="index"
+      class="message-wrapper"
     >
       <TimelineDivider v-if="renderDivider(index, index - 1)" />
 
@@ -78,3 +79,23 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.chat-messages-container {
+  flex-grow: 1;
+  padding: var(--chat-spacing);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.chat-messages-container::-webkit-scrollbar {
+  display: none;
+}
+
+.message-wrapper {
+  /* No additional styles needed for now */
+}
+</style>

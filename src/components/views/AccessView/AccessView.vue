@@ -19,8 +19,8 @@ const ActiveMethod = computed((): any => {
 </script>
 
 <template>
-  <div class="w-full h-full">
-    <div class="w-full h-full flex dark:bg-gray-800">
+  <div class="access-view">
+    <div class="access-view-container">
       <!--login and register forms-->
       <FadeTransition>
         <component :is="ActiveMethod" />
@@ -29,3 +29,17 @@ const ActiveMethod = computed((): any => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.access-view {
+  width: 100%;
+  height: 100%;
+}
+
+.access-view-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: var(--surface-background);
+}
+</style>

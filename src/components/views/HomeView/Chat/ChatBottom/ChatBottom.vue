@@ -77,41 +77,41 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="chat-bottom">
     <!--selected reply display-->
     <div
-      class="relative transition-all duration-200"
-      :class="{ 'pt-[3.75rem]': activeConversation?.replyMessage }"
+      class="reply-container"
+      :class="{ 'has-reply': activeConversation?.replyMessage }"
     >
       <ReplyMessage />
     </div>
 
     <div
-      class="h-auto min-h-[5.25rem] p-5 flex items-end"
+      class="compose-box"
       v-if="store.status !== 'loading'"
-      :class="recording ? ['justify-between'] : []"
+      :class="{'justify-between': recording}"
     >
-      <div class="min-h-[2.75rem]">
+      <div class="action-container">
         <!--select attachments button-->
         <IconButton
           v-if="!recording"
-          class="ic-btn-ghost-primary w-7 h-7 md:mr-5 xs:mr-4"
+          class="attachment-button"
           title="open select attachments modal"
           aria-label="open select attachments modal"
           @click="openAttachmentsModal = true"
         >
-          <PaperClipIcon class="w-[1.25rem] h-[1.25rem]" />
+          <PaperClipIcon class="action-icon" />
         </IconButton>
 
         <!--recording timer-->
-        <p v-if="recording" class="body-1 text-indigo-300">00:11</p>
+        <p v-if="recording" class="recording-timer">00:11</p>
       </div>
 
       <!--message textarea-->
-      <div class="grow md:mr-5 xs:mr-4 self-end" v-if="!recording">
+      <div class="textarea-container" v-if="!recording">
         <div class="relative">
           <Textarea
-            class="max-h-[5rem] pr-[3.125rem] resize-none scrollbar-hidden"
+            class="compose-textarea"
             @value-changed="(newValue: string) => (value = newValue)"
             @input="handleSetDraft"
             :value="value"
@@ -123,18 +123,18 @@ onMounted(() => {
           />
 
           <!--emojis-->
-          <div class="absolute bottom-[.8125rem] right-0">
+          <div class="emoji-container">
             <!--emoji button-->
             <IconButton
               title="toggle emoji picker"
               aria-label="toggle emoji picker"
               @click="showPicker = !showPicker"
-              class="ic-btn-ghost-primary toggle-picker-button w-7 h-7 md:mr-5 xs:mr-4"
+              class="emoji-button toggle-picker-button"
             >
-              <XCircleIcon v-if="showPicker" class="w-[1.25rem] h-[1.25rem]" />
+              <XCircleIcon v-if="showPicker" class="action-icon" />
               <FaceSmileIcon
                 v-else
-                class="w-[1.25rem] h-[1.25rem] text-gray-400 group-hover:text-indigo-300"
+                class="action-icon emoji-icon"
               />
             </IconButton>
 
@@ -143,7 +143,7 @@ onMounted(() => {
               <div
                 v-click-outside="handleClickOutside"
                 v-show="showPicker"
-                class="absolute z-10 bottom-[3.4375rem] md:right-0 xs:right-[-5rem] mt-2"
+                class="emoji-picker-container"
               >
                 <div role="none">
                   <EmojiPicker :show="showPicker" />
@@ -154,33 +154,26 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="min-h-[2.75rem]">
+      <div class="action-container">
         <!--cancel recording button-->
         <div v-if="recording" @click="handleCancelRecording">
-          <Button class="ghost-danger ghost-text"> Cancel </Button>
+          <Button class="cancel-recording-button"> Cancel </Button>
         </div>
       </div>
 
-      <div class="min-h-[2.75rem] flex">
+      <div class="action-container flex">
         <!--finish recording button-->
         <IconButton
           v-if="recording"
           title="finish recording"
           aria-label="finish recording"
           @click="handleToggleRecording"
-          class="relative group w-7 h-7 flex justify-center items-center outline-none rounded-full bg-indigo-300 hover:bg-green-300 dark:hover:bg-green-400 dark:focus:bg-green-400 focus:outline-none transition-all duration-200"
+          class="recording-button"
         >
-          <span
-            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-300 group-hover:bg-green-300 opacity-40"
-          >
-          </span>
+          <span class="recording-pulse"></span>
 
-          <MicrophoneIcon
-            class="w-[1.25rem] h-[1.25rem] text-white group-hover:hidden"
-          />
-          <CheckIcon
-            class="w-[1.25rem] h-[1.25rem] hidden text-white group-hover:block"
-          />
+          <MicrophoneIcon class="recording-icon recording-icon-default" />
+          <CheckIcon class="recording-icon recording-icon-hover" />
         </IconButton>
 
         <!--start recording button-->
@@ -189,19 +182,19 @@ onMounted(() => {
           @click="handleToggleRecording"
           title="start recording"
           aria-label="start recording"
-          class="ic-btn-ghost-primary w-7 h-7 md:mr-5 xs:mr-4"
+          class="mic-button"
         >
-          <MicrophoneIcon class="w-[1.25rem] h-[1.25rem]" />
+          <MicrophoneIcon class="action-icon" />
         </IconButton>
 
         <!--send message button-->
         <IconButton
           v-if="!recording"
-          class="ic-btn-contained-primary w-7 h-7 active:scale-110"
+          class="send-button"
           title="send message"
           aria-label="send message"
         >
-          <PaperAirplaneIcon class="w-[1.0625rem] h-[1.0625rem]" />
+          <PaperAirplaneIcon class="send-icon" />
         </IconButton>
       </div>
     </div>
@@ -212,6 +205,223 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<style scoped>
+.chat-bottom {
+  width: 100%;
+}
+
+.reply-container {
+  position: relative;
+  transition: all var(--t-normal);
+}
+
+.has-reply {
+  padding-top: 3.75rem;
+}
+
+.compose-box {
+  height: auto;
+  min-height: var(--height-pane-footer);
+  padding: var(--chat-spacing);
+  display: flex;
+  align-items: flex-end;
+}
+
+.action-container {
+  min-height: 2.75rem;
+}
+
+.attachment-button,
+.mic-button,
+.emoji-button {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--icon-lighter);
+  background: transparent;
+  border-radius: 9999px;
+  transition: all var(--t-fast);
+}
+
+.attachment-button:hover,
+.mic-button:hover,
+.emoji-button:hover {
+  color: var(--icon-primary);
+  background-color: var(--background-default-hover);
+}
+
+@media (min-width: 60.5rem) {
+  .attachment-button,
+  .mic-button,
+  .emoji-button {
+    margin-right: 1.25rem;
+  }
+}
+
+@media (max-width: 60.5rem) {
+  .attachment-button,
+  .mic-button,
+  .emoji-button {
+    margin-right: 1rem;
+  }
+}
+
+.action-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.emoji-icon {
+  color: var(--icon-lighter);
+}
+
+.recording-timer {
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1rem;
+  color: var(--icon-primary);
+}
+
+.textarea-container {
+  flex-grow: 1;
+  align-self: flex-end;
+  margin-right: 1.25rem;
+}
+
+@media (max-width: 60.5rem) {
+  .textarea-container {
+    margin-right: 1rem;
+  }
+}
+
+.compose-textarea {
+  max-height: 5rem;
+  padding-right: 3.125rem;
+  resize: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.compose-textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.emoji-container {
+  position: absolute;
+  bottom: 0.8125rem;
+  right: 0;
+}
+
+.emoji-picker-container {
+  position: absolute;
+  z-index: 10;
+  bottom: 3.4375rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 60.5rem) {
+  .emoji-picker-container {
+    right: 0;
+  }
+}
+
+@media (max-width: 60.5rem) {
+  .emoji-picker-container {
+    right: -5rem;
+  }
+}
+
+.cancel-recording-button {
+  color: var(--danger);
+  background-color: transparent;
+}
+
+.cancel-recording-button:hover {
+  background-color: var(--background-default-hover);
+}
+
+.recording-button {
+  position: relative;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border-radius: 9999px;
+  background-color: var(--button-primary-background);
+  transition: all var(--t-fast);
+}
+
+.recording-button:hover {
+  background-color: var(--success);
+}
+
+.recording-pulse {
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  background-color: var(--button-primary-background);
+  opacity: 0.4;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.recording-button:hover .recording-pulse {
+  background-color: var(--success);
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.recording-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--button-primary);
+}
+
+.recording-icon-hover {
+  display: none;
+}
+
+.recording-button:hover .recording-icon-default {
+  display: none;
+}
+
+.recording-button:hover .recording-icon-hover {
+  display: block;
+}
+
+.send-button {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  background-color: var(--button-primary-background);
+  color: var(--button-primary);
+  transition: all var(--t-fast);
+}
+
+.send-button:active {
+  transform: scale(1.1);
+}
+
+.send-icon {
+  width: 1.0625rem;
+  height: 1.0625rem;
+}
+</style>
 
 <style>
 input[placeholder="Search emoji"] {
