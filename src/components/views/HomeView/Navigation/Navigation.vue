@@ -27,16 +27,14 @@ const handleActiveSidebarComponentChange = (value: string) => {
 </script>
 
 <template>
-  <div
-    class="xs:w-full md:w-11 md:h-full md:py-7 xs:py-5 px-5 flex xs:flex-row md:flex-col items-center transition-all duration-500"
-  >
+  <div class="avian-navigation">
     <!--logo-->
     <Logo />
 
     <!--main navigation-->
-    <div class="grow">
+    <div class="navigation-main">
       <nav aria-label="Main navigation">
-        <ul class="xs:flex md:block xs:justify-between xs:items-center">
+        <ul class="navigation-list">
           <!--message button-->
           <li>
             <NavLink
@@ -61,7 +59,7 @@ const handleActiveSidebarComponentChange = (value: string) => {
           <li>
             <AccountDropdown
               id="small-profile-menu"
-              class="xs:block md:hidden"
+              class="mobile-only"
               aria-labelledby="small-profile-menu-button"
               :show-dropdown="showDropdown"
               :handle-show-dropdown="() => (showDropdown = true)"
@@ -70,7 +68,7 @@ const handleActiveSidebarComponentChange = (value: string) => {
           </li>
 
           <!--notifications button-->
-          <li class="xs:hidden md:inline">
+          <li class="desktop-only">
             <NavLink
               :icon="BellIcon"
               title="Notifications"
@@ -91,7 +89,7 @@ const handleActiveSidebarComponentChange = (value: string) => {
           </li>
 
           <!--settings button small screen-->
-          <li class="xs:inline md:hidden">
+          <li class="mobile-only">
             <NavLink
               :icon="Cog6ToothIcon"
               title="Settings"
@@ -104,8 +102,8 @@ const handleActiveSidebarComponentChange = (value: string) => {
     </div>
 
     <!--secondary navigation-->
-    <div>
-      <nav aria-label="Extra navigation" class="xs:hidden md:block">
+    <div class="navigation-secondary">
+      <nav aria-label="Extra navigation" class="desktop-only">
         <ul>
           <!--toggle dark mode button-->
           <li>
@@ -128,14 +126,12 @@ const handleActiveSidebarComponentChange = (value: string) => {
       </nav>
 
       <!--separator-->
-      <hr
-        class="xs:hidden md:block mb-6 border-gray-100 dark:border-gray-600"
-      />
+      <hr class="navigation-separator desktop-only" />
 
       <!--user avatar-->
       <AccountDropdown
         id="profile-menu"
-        class="xs:hidden md:block"
+        class="desktop-only"
         aria-labelledby="profile-menu-button"
         :show-dropdown="showDropdown"
         :handle-show-dropdown="() => (showDropdown = true)"
@@ -144,3 +140,61 @@ const handleActiveSidebarComponentChange = (value: string) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.avian-navigation {
+  width: 100%;
+  height: auto;
+  padding: var(--compose-box-left-right-padding);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all var(--t-normal);
+}
+
+.navigation-main {
+  flex-grow: 1;
+}
+
+.navigation-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-separator {
+  margin-bottom: 1.5rem;
+  border-color: var(--border-default);
+}
+
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+/* Media queries for desktop */
+@media (min-width: 60.5rem) {
+  .avian-navigation {
+    width: var(--navbar-width);
+    height: 100%;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+    flex-direction: column;
+  }
+
+  .navigation-list {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+}
+</style>

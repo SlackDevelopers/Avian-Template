@@ -10,9 +10,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="xs:mb-0 md:mb-6">
+  <div class="nav-link-container">
     <button
-      class="group relative focus:outline-none"
+      class="nav-link-button"
       :title="props.title"
       :aria-label="
         props.notifications
@@ -23,21 +23,73 @@ const props = defineProps<{
       <!--icon-->
       <component
         :is="props.icon"
-        class="w-7 h-6 group-focus:text-indigo-300 hover:text-indigo-400 active:text-indigo-300 active:scale-110 dark:text-gray-500 transition ease-out duration-200"
-        :class="
-          (props.active as boolean)
-            ? ['text-indigo-300', 'dark:text-indigo-400']
-            : [' text-gray-300']
-        "
+        class="nav-icon"
+        :class="{'nav-icon-active': props.active}"
       />
 
       <!--notification pill-->
       <div
         v-if="props.notifications"
-        class="absolute right-0 top-3 w-5 h-5 flex items-center justify-center outline-none bg-indigo-300 dark:bg-indigo-400 text-xs text-white border border-white dark:border-gray-800 rounded-full transition duration-500"
+        class="notification-badge"
       >
         {{ props.notifications }}
       </div>
     </button>
   </div>
 </template>
+
+<style scoped>
+.nav-link-container {
+  margin-bottom: 0;
+}
+
+.nav-link-button {
+  position: relative;
+  outline: none;
+}
+
+.nav-icon {
+  width: 1.75rem;
+  height: 1.5rem;
+  color: var(--icon-lighter);
+  transition: all var(--t-fast);
+}
+
+.nav-icon:hover {
+  color: var(--icon-primary);
+}
+
+.nav-icon:active {
+  color: var(--icon-primary);
+  transform: scale(1.1);
+}
+
+.nav-icon-active {
+  color: var(--icon-primary);
+}
+
+.notification-badge {
+  position: absolute;
+  right: 0;
+  top: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  background-color: var(--button-primary-background);
+  color: var(--button-primary);
+  border: 1px solid var(--background-default);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  transition: all var(--t-normal);
+}
+
+/* Media queries for desktop */
+@media (min-width: 60.5rem) {
+  .nav-link-container {
+    margin-bottom: 1.5rem;
+  }
+}
+</style>

@@ -32,17 +32,12 @@ const handleCloseOnClickOutside = (event: Event) => {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="account-dropdown">
     <!--toggle dropdown button-->
     <button
       :id="props.id + '-button'"
       @click="handleShowDropdown"
-      class="bg-white rounded-full active:scale-110 focus:outline-none focus:scale-110 transition duration-200 ease-out"
-      :style="{
-        'box-shadow': !store.settings.darkMode
-          ? '0 .125rem .3125rem rgba(193, 202, 255, 0.5),.125rem 0 .3125rem rgba(193, 202, 255, 0.5),-0.125rem 0 .3125rem rgba(193, 202, 255, 0.5),0 -0.125rem .3125rem rgba(193, 202, 255, 0.5)'
-          : '0 .125rem .3125rem rgba(0, 70, 128, 0.5),.125rem 0 .3125rem rgba(0, 70, 128, 0.5),-0.125rem 0 .3125rem rgba(0, 70, 128, 0.5),0 -0.125rem .3125rem rgba(0, 70, 128, 0.5)',
-      }"
+      class="avatar-button"
       :aria-expanded="showDropdown"
       aria-controls="profile-menu"
       aria-label="toggle profile menu"
@@ -50,7 +45,7 @@ const handleCloseOnClickOutside = (event: Event) => {
       <div
         id="user-avatar"
         :style="{ backgroundImage: `url(${store.user?.avatar})` }"
-        class="w-7 h-7 rounded-full bg-cover bg-center"
+        class="avatar-image"
       ></div>
     </button>
 
@@ -70,40 +65,107 @@ const handleCloseOnClickOutside = (event: Event) => {
       :close-dropdown="props.handleCloseDropdown"
     >
       <button
-        class="dropdown-link dropdown-link-primary"
+        class="account-menu-item account-menu-item-primary"
         aria-label="Show profile information"
         role="menuitem"
         @click="props.handleCloseDropdown"
       >
-        <InformationCircleIcon
-          class="h-5 w-5 mr-3 text-black opacity-60 dark:text-white dark:opacity-70"
-        />
+        <InformationCircleIcon class="menu-item-icon" />
         Profile Information
       </button>
 
       <RouterLink
         to="/reset/"
-        class="dropdown-link dropdown-link-primary"
+        class="account-menu-item account-menu-item-primary"
         aria-label="change password"
         role="menuitem"
         @click="props.handleCloseDropdown"
       >
-        <ArrowPathIcon
-          class="h-5 w-5 mr-3 text-black opacity-60 dark:text-white dark:opacity-70"
-        />
+        <ArrowPathIcon class="menu-item-icon" />
         Password Change
       </RouterLink>
 
       <RouterLink
         to="/access/sign-in/"
-        class="dropdown-link dropdown-link-danger"
+        class="account-menu-item account-menu-item-danger"
         aria-label="logout"
         role="menuitem"
         @click.prevent="props.handleCloseDropdown"
       >
-        <ArrowLeftOnRectangleIcon class="h-5 w-5 mr-3" />
+        <ArrowLeftOnRectangleIcon class="menu-item-icon menu-item-icon-danger" />
         Logout
       </RouterLink>
     </Dropdown>
   </div>
 </template>
+
+<style scoped>
+.account-dropdown {
+  position: relative;
+}
+
+.avatar-button {
+  background-color: var(--background-default);
+  border-radius: 9999px;
+  outline: none;
+  transition: all var(--t-fast);
+  box-shadow: 0 0.125rem 0.3125rem rgba(var(--focus-rgb), 0.3),
+              0.125rem 0 0.3125rem rgba(var(--focus-rgb), 0.3),
+              -0.125rem 0 0.3125rem rgba(var(--focus-rgb), 0.3),
+              0 -0.125rem 0.3125rem rgba(var(--focus-rgb), 0.3);
+}
+
+.avatar-button:active,
+.avatar-button:focus {
+  transform: scale(1.1);
+}
+
+.avatar-image {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background-size: cover;
+  background-position: center;
+}
+
+.account-menu-item {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom-width: 1px;
+  outline: none;
+  font-size: 0.875rem;
+  transition: all var(--t-fast);
+}
+
+.account-menu-item-primary {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+.account-menu-item-primary:hover {
+  background-color: var(--background-default-hover);
+}
+
+.account-menu-item-danger {
+  color: var(--danger);
+  border-color: var(--border-default);
+}
+
+.account-menu-item-danger:hover {
+  background-color: var(--background-default-hover);
+}
+
+.menu-item-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.75rem;
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.menu-item-icon-danger {
+  color: var(--danger);
+}
+</style>

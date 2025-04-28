@@ -5,6 +5,7 @@ const props = defineProps<{
   loading?: boolean;
   link?: boolean;
   typography?: string;
+  variant?: 'primary' | 'success' | 'danger';
 }>();
 </script>
 
@@ -13,7 +14,8 @@ const props = defineProps<{
     :is="link ? RouterLink : 'button'"
     @click="$emit('button-clicked', $event)"
     tabindex="0"
-    class="group btn"
+    class="avian-button"
+    :class="variant || 'primary'"
   >
     <!--loading icon-->
     <svg
@@ -48,3 +50,45 @@ const props = defineProps<{
     </template>
   </component>
 </template>
+
+<style scoped>
+.avian-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-app);
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.avian-button.primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary);
+}
+
+.avian-button.primary:hover {
+  background-color: var(--button-primary-background-hover);
+}
+
+.avian-button.success {
+  background-color: var(--button-approve-background);
+  color: var(--button-approve);
+}
+
+.avian-button.success:hover {
+  background-color: var(--button-approve-background-hover);
+}
+
+.avian-button.danger {
+  background-color: var(--button-primary-destructive-background);
+  color: var(--button-primary-destructive-color);
+}
+
+.avian-button.danger:hover {
+  background-color: var(--button-primary-destructive-background-hover);
+}
+</style>

@@ -6,7 +6,7 @@ const store = useStore();
 
 <template>
   <div
-    :class="{ dark: store.settings.darkMode }"
+    :class="{ dark: store.settings.darkMode, light: !store.settings.darkMode }"
     class="scrollbox"
     tabindex="0"
   >
@@ -29,24 +29,24 @@ const store = useStore();
 }
 
 .scrollbox::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
 }
 
 .scrollbox::-webkit-scrollbar-track {
   border-radius: 100vh;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
 }
 
-.scrollbox:not(.dark)::-webkit-scrollbar-thumb {
-  background: rgb(229, 231, 235);
+.scrollbox.light::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-light);
   border-radius: 100vh;
   border: 0;
   cursor: default;
 }
 
 .scrollbox.dark::-webkit-scrollbar-thumb {
-  background: #52565a;
+  background-color: var(--background-default-active);
   border-radius: 100vh;
   border: 0;
   cursor: default;

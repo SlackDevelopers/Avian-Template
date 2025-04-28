@@ -39,7 +39,7 @@ onUnmounted(() => {
   <div>
     <div
       v-if="props.show"
-      class="fixed left-0 top-0 z-[50] w-full h-full"
+      class="dropdown-backdrop"
     ></div>
 
     <ScaleTransition>
@@ -48,7 +48,7 @@ onUnmounted(() => {
         :style="props.coordinates"
         v-show="props.show"
         v-click-outside="props.handleClickOutside"
-        class="absolute z-[100] w-[12.5rem] mt-2 rounded-sm bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-600 focus:outline-none"
+        class="dropdown-menu"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
@@ -61,3 +61,26 @@ onUnmounted(() => {
     </ScaleTransition>
   </div>
 </template>
+
+<style scoped>
+.dropdown-backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 100;
+  width: 12.5rem;
+  margin-top: 0.5rem;
+  border-radius: var(--radius-app);
+  background-color: var(--background-default);
+  box-shadow: 0 0.25rem 0.5rem rgba(var(--shadow-rgb), 0.12);
+  border: 1px solid var(--border-default);
+  outline: none;
+}
+</style>

@@ -76,7 +76,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="{ dark: store.settings.darkMode }">
+  <div :class="{ dark: store.settings.darkMode, light: !store.settings.darkMode }">
     <div
       class="bg-white dark:bg-gray-800 transition-colors duration-500"
       :style="{ height: height }"

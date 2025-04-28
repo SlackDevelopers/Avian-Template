@@ -9,38 +9,78 @@ const store = useStore();
 </script>
 
 <template>
-  <div class="mb-7 h-7 xs:hidden md:block">
+  <div class="logo-container">
     <a
       href="#mainContent"
       title="Skip to main content"
       @blur="SkipLinkFocused = false"
       @focus="SkipLinkFocused = true"
-      class="outline-none"
-      :class="{
-        absolute: !SkipLinkFocused,
-        'right-[625rem]': !SkipLinkFocused,
-      }"
+      class="skip-link"
+      :class="{'skip-link-hidden': !SkipLinkFocused}"
     >
-      <ForwardIcon class="w-7 h-6 text-indigo-300" />
+      <ForwardIcon class="skip-icon" />
     </a>
 
     <button
       aria-label="avian logo"
       :class="{ hidden: SkipLinkFocused }"
-      class="outline-none"
+      class="logo-button"
     >
       <img
         v-if="!store.settings.darkMode"
         src="@src/assets//vectors/logo.svg"
-        class="w-8 h-7"
+        class="logo-image"
         alt="gray bird logo"
       />
       <img
         v-else
         src="@src/assets/vectors/logo-white.svg"
-        class="w-8 h-7 opacity-40"
+        class="logo-image logo-image-dark"
         alt="white bird logo"
       />
     </button>
   </div>
 </template>
+
+<style scoped>
+.logo-container {
+  margin-bottom: 1.75rem;
+  height: 1.75rem;
+  display: none;
+}
+
+.skip-link {
+  outline: none;
+}
+
+.skip-link-hidden {
+  position: absolute;
+  right: 625rem;
+}
+
+.skip-icon {
+  width: 1.75rem;
+  height: 1.5rem;
+  color: var(--icon-primary);
+}
+
+.logo-button {
+  outline: none;
+}
+
+.logo-image {
+  width: 2rem;
+  height: 1.75rem;
+}
+
+.logo-image-dark {
+  opacity: 0.4;
+}
+
+/* Media queries for desktop */
+@media (min-width: 60.5rem) {
+  .logo-container {
+    display: block;
+  }
+}
+</style>

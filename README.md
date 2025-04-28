@@ -1,5 +1,5 @@
 > [!IMPORTANT]  
-> Will begin implementing the new styles specified in the figma design file.
+> New styles have been implemented based on CSS variables. Check out STYLE-GUIDE.md for details.
 
 <br>
 
@@ -59,3 +59,15 @@ npm run dev
 - <a href="https://vueuse.org/">vueuse</a>
 - <a href="https://wavesurfer-js.org/">Wavesurfer-js</a>
 - <a href="https://github.com/Akryum/floating-vue">floating-vue</a>
+
+## Style System 🎨
+
+The project uses a CSS variable-based styling system that supports both light and dark themes. 
+
+- **Theme Variables**: Defined in `theme-dark.css` and `themes-light.css`
+- **Size Variables**: Consistent sizing system in `sizes.css`
+- **Component Styles**: Progressive migration to CSS variables
+
+For more details:
+- See [STYLE-GUIDE.md](./STYLE-GUIDE.md) for usage guidelines
+- See [MIGRATION-SUMMARY.md](./MIGRATION-SUMMARY.md) for implementation details
