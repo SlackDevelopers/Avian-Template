@@ -8,13 +8,14 @@
   .scrollbar-hidden {
     -ms-overflow-style: none;
     scrollbar-width: none;    
-    .scrollbar-hidden::-webkit-scrollbar {
-      @apply hidden;
-    }
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
   }
 
   .text-color {
-     @apply text-black text-opacity-70 dark:text-white dark:text-opacity-70;
+     color: var(--text-primary); 
   }
 }
 
@@ -23,181 +24,447 @@
 @layer components {
   /***  Typography  ***/
   .body-1 {
-    @apply text-xs font-light leading-4 tracking-[.01rem];
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .body-2 {
-    @apply text-sm font-normal leading-4 tracking-[.01rem];
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .body-3 {
-    @apply text-sm font-light leading-5 tracking-[.01rem];
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.25rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .body-4 {
-    @apply text-xs font-light leading-4 tracking-[.01rem];
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .body-5 {
-    @apply text-[1rem]  leading-4 tracking-[.01rem];
+    font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .body-6 {
-    @apply text-[1.5rem] leading-4 tracking-[.01rem];
+    font-size: 1.5rem;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .heading-1 {
-    @apply text-xl leading-4 tracking-[.01rem];
+    font-size: 1.25rem;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .heading-2 {
-    @apply text-sm font-semibold leading-4 tracking-[.01rem];
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .heading-3 {
-    @apply text-xs font-semibold leading-4 tracking-[.01rem];
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .heading-4 {
-    @apply text-3xl leading-9 tracking-[.01rem];
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .display-1 {
-    @apply outline-none text-3xl leading-9 tracking-[.01rem];
+    outline: none;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
   }
 
   .contained-text {
-    @apply text-sm font-semibold leading-4 tracking-[.01rem] text-white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--button-primary);
   }
 
   .outlined-text {
-    @apply text-sm font-semibold leading-4 tracking-[.01rem] text-black text-opacity-70 dark:text-white hover:text-white focus:text-white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
+  }
+
+  .outlined-text:hover,
+  .outlined-text:focus {
+    color: var(--button-primary);
   }
 
   .ghost-text {
-    @apply text-sm font-light leading-4 tracking-[.01rem] text-black text-opacity-70 dark:text-white dark:hover:text-white;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-primary);
+  }
+
+  .ghost-text:hover {
+    color: var(--text-primary-stronger);
   }
 
 
   /***  Button  ***/
+  /* Note: these classes are being phased out in favor of component-specific styles */
   .btn {
-    @apply flex justify-center items-center py-4 px-5 rounded-sm outline-none focus:outline-none
-    transition-all duration-200 ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-app);
+    outline: none;
+    transition: all var(--t-fast);
   }
 
-  .contained-primary {  
-    @apply bg-indigo-300 dark:bg-indigo-400  focus:ring focus:ring-indigo-100 active:ring active:ring-indigo-200;
+  .contained-primary {
+    background-color: var(--button-primary-background);
+    color: var(--button-primary);
+  }
+
+  .contained-primary:focus {
+    box-shadow: 0 0 0 3px var(--focus-lighter);
+  }
+
+  .contained-primary:active {
+    box-shadow: 0 0 0 3px var(--focus-animation);
   }
 
   .contained-success {
-   @apply bg-green-500 dark:bg-green-500 focus:ring focus:ring-green-100 active:ring active:ring-green-200; 
+    background-color: var(--success);
+    color: var(--background-default);
+  }
+
+  .contained-success:focus {
+    box-shadow: 0 0 0 3px var(--focus-lighter);
+  }
+
+  .contained-success:active {
+    box-shadow: 0 0 0 3px var(--focus-animation);
   }
 
   .contained-danger {
-    @apply bg-red-300 dark:bg-red-400 focus:ring focus:ring-red-100 active:ring active:ring-red-200;
+    background-color: var(--danger);
+    color: var(--background-default);
+  }
+
+  .contained-danger:focus {
+    box-shadow: 0 0 0 3px var(--focus-lighter);
+  }
+
+  .contained-danger:active {
+    box-shadow: 0 0 0 3px var(--focus-animation);
   }
 
   .outlined-primary {
-   @apply bg-opacity-0 hover:bg-indigo-300 focus:bg-indigo-300 dark:hover:bg-indigo-400 dark:focus:bg-indigo-400
-   border border-gray-100  dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-400 focus:border-indigo-300 dark:focus:border-indigo-400;
+    background-color: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+  }
+
+  .outlined-primary:hover,
+  .outlined-primary:focus {
+    background-color: var(--background-default-hover);
+    border-color: var(--button-primary-background);
+    color: var(--button-primary-background);
   }
 
   .outlined-success {
-    @apply bg-opacity-0 hover:bg-green-300 dark:hover:bg-green-400 focus:bg-green-300 dark:focus:bg-green-400
-    border border-gray-100 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-400 focus:border-green-300 dark:focus:border-green-400;
+    background-color: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+  }
+
+  .outlined-success:hover,
+  .outlined-success:focus {
+    background-color: var(--background-default-hover);
+    border-color: var(--success);
+    color: var(--success);
   }
 
   .outlined-danger {
-    @apply bg-opacity-0 hover:bg-red-200 dark:hover:bg-red-400 focus:bg-red-200 dark:focus:bg-red-400
-    border border-gray-200 dark:border-gray-600 hover:border-red-200 dark:hover:border-red-400 focus:border-red-200 dark:focus:border-red-400;
+    background-color: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+  }
+
+  .outlined-danger:hover,
+  .outlined-danger:focus {
+    background-color: var(--background-default-hover);
+    border-color: var(--danger);
+    color: var(--danger);
   }
 
   .ghost-primary {
-    @apply hover:bg-indigo-50 hover:text-indigo-400 dark:hover:bg-gray-600 active:bg-indigo-100;
+    background-color: transparent;
+    color: var(--text-primary);
+  }
+
+  .ghost-primary:hover {
+    background-color: var(--background-default-hover);
+    color: var(--button-primary-background);
+  }
+
+  .ghost-primary:active {
+    background-color: var(--background-default-active);
   }
 
   .ghost-success {
-    @apply hover:bg-green-50 hover:text-green-400 dark:hover:bg-gray-600 active:bg-green-100;
+    background-color: transparent;
+    color: var(--text-primary);
+  }
+
+  .ghost-success:hover {
+    background-color: var(--background-default-hover);
+    color: var(--success);
+  }
+
+  .ghost-success:active {
+    background-color: var(--background-default-active);
   }
 
   .ghost-danger {
-    @apply hover:bg-red-50 dark:hover:bg-red-500 active:bg-red-100 dark:active:bg-red-400;
+    background-color: transparent;
+    color: var(--text-primary);
+  }
+
+  .ghost-danger:hover {
+    background-color: var(--background-default-hover);
+    color: var(--danger);
+  }
+
+  .ghost-danger:active {
+    background-color: var(--background-default-active);
   }
 
   /***  IconButton  ***/
+  /* Note: these classes are being phased out in favor of component-specific styles */
   .ic-btn {
-    @apply flex justify-center items-center
-     rounded-full text-gray-400 dark:text-white outline-none focus:outline-none transition-all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    color: var(--icon);
+    outline: none;
+    transition: all var(--t-fast);
   }
   
   .ic-btn-contained-primary {
-    @apply bg-indigo-300 hover:bg-indigo-400 focus:bg-indigo-400 dark:focus:bg-indigo-300 dark:bg-indigo-400 dark:hover:bg-indigo-400 text-white duration-200;
+    background-color: var(--button-primary-background);
+    color: var(--button-primary);
+  }
+
+  .ic-btn-contained-primary:hover,
+  .ic-btn-contained-primary:focus {
+    background-color: var(--button-primary-background-hover);
   }
 
   .ic-btn-contained-success {
-    @apply bg-green-400 hover:bg-green-500 active:bg-green-600 text-white duration-500;
+    background-color: var(--success);
+    color: var(--button-primary);
+  }
+
+  .ic-btn-contained-success:hover {
+    background-color: var(--button-approve-background-hover);
+  }
+
+  .ic-btn-contained-success:active {
+    background-color: var(--button-approve-background-hover-strong);
   }
 
   .ic-btn-contained-danger {
-    @apply bg-red-400 hover:bg-red-500 active:bg-red-600 text-white duration-500;
+    background-color: var(--danger);
+    color: var(--button-primary);
+  }
+
+  .ic-btn-contained-danger:hover {
+    background-color: var(--button-primary-destructive-background-hover);
+  }
+
+  .ic-btn-contained-danger:active {
+    background-color: var(--button-primary-destructive-background-hover);
+    opacity: 0.9;
   }
 
   .ic-btn-contained-glass {
-    @apply bg-gray-100 bg-opacity-[0.2] hover:bg-opacity-[0.3] active:bg-opacity-[0.6] text-white opacity-80 hover:opacity-100 duration-200;
+    background-color: rgba(var(--background-default-rgb), 0.2);
+    color: var(--button-primary);
+    opacity: 0.8;
+  }
+
+  .ic-btn-contained-glass:hover {
+    background-color: rgba(var(--background-default-rgb), 0.3);
+    opacity: 1;
+  }
+
+  .ic-btn-contained-glass:active {
+    background-color: rgba(var(--background-default-rgb), 0.6);
   }
 
   .ic-btn-contained-gray {
-    @apply bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600 focus:bg-gray-200 dark:focus:bg-gray-600 active:bg-gray-200 dark:active:bg-gray-500 
-    text-gray-500 hover:text-gray-600 dark:hover:text-white focus:text-gray-600 dark:focus:text-white duration-200;
+    background-color: var(--background-default-active);
+    color: var(--icon);
+  }
+
+  .ic-btn-contained-gray:hover,
+  .ic-btn-contained-gray:focus {
+    background-color: var(--background-default-hover);
+    color: var(--icon-strong);
   }
 
   .ic-btn-outlined-danger {
-    @apply hover:bg-red-50 dark:hover:bg-red-500 focus:bg-red-100 dark:focus:bg-red-400
-    border border-gray-200 dark:border-gray-600 hover:border-red-100 dark:hover:border-red-500 focus:border-red-100 dark:focus:border-red-400 
-   hover:text-red-400 dark:hover:text-white focus:text-red-400 duration-200;
+    border: 1px solid var(--border-default);
+    color: var(--icon);
+  }
+
+  .ic-btn-outlined-danger:hover {
+    background-color: var(--background-default-hover);
+    border-color: var(--danger);
+    color: var(--danger);
   }
 
   .ic-btn-ghost-primary {
-    @apply hover:bg-indigo-50 dark:hover:bg-gray-600 focus:bg-indigo-100 dark:focus:bg-gray-600 hover:text-indigo-400 focus:text-indigo-400 duration-200;
+    background-color: transparent;
+    color: var(--icon);
+  }
+
+  .ic-btn-ghost-primary:hover,
+  .ic-btn-ghost-primary:focus {
+    background-color: var(--background-default-hover);
+    color: var(--icon-primary);
   }
 
   .ic-btn-ghost-danger {
-    @apply hover:bg-red-50 dark:hover:bg-gray-600 focus:bg-red-100 dark:focus:bg-gray-600 hover:text-red-400 focus:text-red-400 duration-200;
+    background-color: transparent;
+    color: var(--icon);
+  }
+
+  .ic-btn-ghost-danger:hover,
+  .ic-btn-ghost-danger:focus {
+    background-color: var(--background-default-hover);
+    color: var(--danger);
   }
   
   .ic-btn-ghost-gray {
-    @apply hover:bg-gray-50 dark:hover:bg-gray-600 focus:bg-gray-50 dark:focus:bg-gray-600 duration-200;
+    background-color: transparent;
+    color: var(--icon);
+  }
+
+  .ic-btn-ghost-gray:hover,
+  .ic-btn-ghost-gray:focus {
+    background-color: var(--background-default-hover);
   }
 
   /***  Input  ***/
+ /* Note: these classes are being phased out in favor of component-specific styles */
  .text-input {
-  @apply max-w-full w-full h-8 p-4 rounded-sm content-center outline-none
-  text-sm text-black dark:text-white text-opacity-70 placeholder:text-black dark:placeholder:text-white placeholder:opacity-50
-  focus:outline-none transition duration-200 ease-out;
+  max-width: 100%;
+  width: 100%;
+  height: 2rem;
+  padding: 1rem;
+  border-radius: var(--radius-app);
+  content: center;
+  outline: none;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  transition: all var(--t-fast);
+ }
+
+ .text-input::placeholder {
+   color: var(--input-placeholder);
  }
 
  .bordered-input {
-  @apply border border-gray-200 bg-gray-50 dark:bg-gray-700
-   dark:focus:bg-opacity-0 focus:bg-opacity-0 focus:border-indigo-300
-  dark:border-gray-600;
+  border: 1px solid var(--border-default);
+  background-color: var(--background-default-hover);
+ }
+
+ .bordered-input:focus {
+   background-color: transparent;
+   border-color: var(--input-border-active);
  }
 
  .ringed-input {
-  @apply bg-gray-50 border-0 dark:bg-gray-700 focus:ring focus:ring-indigo-100 dark:focus:bg-opacity-0 focus:bg-opacity-0;
+  background-color: var(--background-default-hover);
+  border: 0;
+ }
+
+ .ringed-input:focus {
+  background-color: transparent;
+  box-shadow: 0 0 0 3px var(--focus-lighter);
  }
   
  /* DropdownLink */
+ /* Note: DropdownLink has been migrated to a component-specific style */
  .dropdown-link {
-  @apply w-full px-4 py-3 flex items-center border-b opacity-60 
-  outline-none text-sm border-gray-200 dark:border-gray-600 
-  transition-all duration-200;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-default);
+  opacity: 0.6;
+  outline: none;
+  font-size: 0.875rem;
+  transition: all var(--t-fast);
  }
 
  .dropdown-link-danger {
-  @apply text-red-500 dark:hover:text-red-50 hover:bg-red-50 active:bg-red-100 dark:hover:bg-red-900;
+  color: var(--danger);
+ }
+
+ .dropdown-link-danger:hover {
+  background-color: var(--background-default-hover);
+ }
+
+ .dropdown-link-danger:active {
+  background-color: var(--background-default-active);
  }
 
  .dropdown-link-primary {
-  @apply text-black text-opacity-70 dark:text-white active:bg-gray-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600 hover:bg-gray-50;
+  color: var(--text-primary);
+ }
+
+ .dropdown-link-primary:hover {
+  background-color: var(--background-default-hover);
+ }
+
+ .dropdown-link-primary:active {
+  background-color: var(--background-default-active);
  }
 }

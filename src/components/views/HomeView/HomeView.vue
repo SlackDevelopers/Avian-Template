@@ -11,24 +11,21 @@ const store = useStore();
 
 <template>
   <KeepAlive>
-    <div
-      class="xs:relative md:static h-full flex xs:flex-col md:flex-row overflow-hidden"
-    >
+    <div class="home-container">
       <!--navigation-bar-->
-      <Navigation class="xs:order-1 md:-order-none" />
+      <Navigation class="nav-mobile-order" />
+      
       <!--sidebar-->
-      <Sidebar
-        class="xs:grow-1 md:grow-0 xs:overflow-y-scroll md:overflow-visible scrollbar-hidden"
-      />
+      <Sidebar class="sidebar-wrapper" />
+      
       <!--chat-->
       <div
         id="mainContent"
-        class="xs:absolute xs:z-10 md:static grow h-full xs:w-full md:w-fit scrollbar-hidden bg-white dark:bg-gray-800 transition-all duration-500"
-        :class="
-          getActiveConversationId()
-            ? ['xs:left-[0rem]', 'xs:static']
-            : ['xs:left-[62.5rem]']
-        "
+        class="chat-container"
+        :class="{
+          'chat-container-active': getActiveConversationId(),
+          'chat-container-hidden': !getActiveConversationId()
+        }"
         role="region"
       >
         <router-view v-slot="{ Component }">
@@ -40,3 +37,75 @@ const store = useStore();
     </div>
   </KeepAlive>
 </template>
+
+<style scoped>
+.home-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nav-mobile-order {
+  order: 1;
+}
+
+.sidebar-wrapper {
+  flex-grow: 1;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sidebar-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-container {
+  position: absolute;
+  z-index: 10;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  background-color: var(--background-default);
+  transition: all var(--t-normal);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.chat-container::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-container-active {
+  left: 0;
+  position: static;
+}
+
+.chat-container-hidden {
+  left: 62.5rem;
+}
+
+/* Desktop styles */
+@media (min-width: 60.5rem) {
+  .home-container {
+    flex-direction: row;
+    position: static;
+  }
+
+  .nav-mobile-order {
+    order: initial;
+  }
+
+  .sidebar-wrapper {
+    flex-grow: 0;
+    overflow: visible;
+  }
+
+  .chat-container {
+    position: static;
+    width: fit-content;
+  }
+}
+</style>

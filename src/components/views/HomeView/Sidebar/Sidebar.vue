@@ -29,11 +29,34 @@ const ActiveComponent = computed((): any => {
 </script>
 
 <template>
-  <aside
-    class="xs:w-full md:w-[18.125rem] h-full xs:px-5 md:p-0 flex flex-col overflow-visible transition-all duration-500"
-  >
+  <aside class="sidebar-container">
     <FadeTransition>
-      <component :is="ActiveComponent" class="h-full flex flex-col" />
+      <component :is="ActiveComponent" class="sidebar-content" />
     </FadeTransition>
   </aside>
 </template>
+
+<style scoped>
+.sidebar-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--compose-box-left-right-padding);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  transition: all var(--t-normal);
+}
+
+.sidebar-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 60.5rem) {
+  .sidebar-container {
+    width: var(--navbar-width-expanded);
+    padding: 0;
+  }
+}
+</style>

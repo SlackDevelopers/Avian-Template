@@ -35,25 +35,53 @@ Este documento registra el progreso actual en la migración del sistema de estil
   - Dropdown.vue: Implementadas variables para menús desplegables
   - DropdownLink.vue: Creados estilos consistentes para enlaces de menú
 
+## Fase 3: Componentes de Layout Principal ✅
+
+- ✅ Migrado componente Sidebar.vue
+  - Implementados estilos scoped con variables CSS
+  - Mejorada la estructura responsiva
+  - Adaptada la interfaz de transición entre componentes
+
+- ✅ Migrado componente SidebarHeader.vue
+  - Creados estilos semánticos para títulos y acciones
+  - Implementadas variables para dimensiones y espaciados
+  - Mejorada la accesibilidad y estructura HTML
+
+- ✅ Migrado componente HomeView.vue
+  - Refactorizada la estructura principal de la aplicación
+  - Implementado sistema responsivo basado en variables CSS
+  - Mejorada la organización de componentes principales
+
+- ✅ Actualizadas clases globales de utilidad
+  - Migrada la clase scrollbar-hidden para usar estilos nativos
+  - Actualizada la clase text-color para usar variables CSS
+  - Adaptadas las clases tipográficas para el nuevo sistema
+
+- ✅ Migradas clases de componentes reutilizables
+  - Actualizadas clases de botones para usar variables CSS
+  - Migradas clases de botones de iconos
+  - Adaptadas clases de inputs para el nuevo sistema
+
 ## Próximos pasos:
 
-1. **Componentes de Layout Principal**
-   - Migración de Sidebar.vue y componentes relacionados
-   - Implementación de variables para layout principal en HomeView.vue
-   - Adaptación de paneles y contenedores principales
+1. **Componentes de Chat**
+   - Migración de componentes de mensajería (Message.vue y subcomponentes)
+   - Implementación de variables para burbujas de chat
+   - Adaptación de componentes interactivos del chat
 
-2. **Componentes de Chat**
-   - Adaptación de componentes de mensajería
-   - Implementación de variables para burbujas de mensaje
-   - Refinamiento de interacciones y estados
+2. **Vistas principales y formularios**
+   - Migración de AccessView.vue y sus formularios
+   - Adaptación de componentes de autenticación
+   - Implementación de variables para pantallas de carga
 
 ## Observaciones:
 
 - Los componentes migrados mantienen la funcionalidad original
 - La estructura responsiva se ha simplificado con clases más descriptivas
 - Las variables CSS proporcionan una experiencia visual más consistente
-- Se ha reducido la dependencia de clases de utilidad de Tailwind
+- Se ha reducido significativamente la dependencia de clases de utilidad de Tailwind
+- Las clases globales ahora incluyen comentarios de migración progresiva
 
 ---
 
-Última actualización: [Fecha actual]
+Última actualización: 28 de abril de 2025
